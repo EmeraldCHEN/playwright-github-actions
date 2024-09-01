@@ -1,5 +1,5 @@
 # playwright-github-action
-- Integrate Playwright tests with GitHub Actions workflows to easily run end-to-end and API tests across multiple browsers and platforms.
+- Integrate Playwright tests with GitHub Actions workflows to easily run API and end-to-end tests across multiple browsers and platforms.
 - Several useful commands to run locally:
   1) Runs the end-to-end tests: `npx playwright test`
   2) Starts the interactive UI mode: `npx playwright test --ui`
