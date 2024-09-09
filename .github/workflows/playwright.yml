@@ -2,7 +2,7 @@ name: Playwright Tests
 on:
   schedule:
     # During Daylight Saving Time (NZDT, UTC+13)
-    - cron: '0 19 * * *' # Runs at 8:00 AM NZDT every day
+    # - cron: '0 19 * * *' # Runs at 8:00 AM NZDT every day
     - cron: '0 1 * * 1'  # Runs at 2:00 PM NZDT every Monday (for NZDT)
   push:
     branches: [ main, master ]
