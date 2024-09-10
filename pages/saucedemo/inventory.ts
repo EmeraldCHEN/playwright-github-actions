@@ -12,7 +12,7 @@ export class InventoryPage {
   }
 
   async getInventoryList() {
-    return await this.page.getByTestId('data-test=inventory-list');
+    return await this.page.locator('.inventory_list');
   }
 
   async addToCart(itemName: string) {
@@ -29,6 +29,7 @@ export class InventoryPage {
 
   async clickRemoveButton(itemName: string) {
     if(itemName == 'Sauce Labs Backpack') {
+      await this.page.waitForSelector('data-test=remove-sauce-labs-backpack');
       await this.page.click('data-test=remove-sauce-labs-backpack');
     }   
   }

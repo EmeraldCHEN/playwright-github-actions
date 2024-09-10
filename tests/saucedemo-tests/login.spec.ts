@@ -14,7 +14,7 @@ test.describe('Sauce Demo Login Tests', () => {
     expect(await inventoryPage.getPageTitle()).toBe('Swag Labs');
   });
 
-  test.only('should show error message with invalid credentials', async ({ page }) => {
+  test('should show error message with invalid credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.goTo();
