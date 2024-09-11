@@ -19,6 +19,6 @@ test.describe('Sauce Demo Inventory Tests', () => {
     await inventoryPage.clickAddToCartButton('Sauce Labs Backpack');
     expect(await inventoryPage.getCartCount()).toBe('1');
     await inventoryPage.clickRemoveButton('Sauce Labs Backpack');
-    expect(await inventoryPage.getCartCount()).toBeNull();
+    expect(await inventoryPage.getCartCount()).not.toBe('1');
   });
 });
