@@ -8,7 +8,7 @@ export class LoginPage {
   }
 
   async goTo() {
-    await this.page.goto('https://www.saucedemo.com/');
+    await this.page.goto('/');
   }
 
   async enterUsername(username: string) {

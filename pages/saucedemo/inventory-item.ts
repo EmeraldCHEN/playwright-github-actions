@@ -12,8 +12,8 @@ export class InventoryItemPage {
   }
 
   async clickAddToCartButton() {
-    await this.page.waitForSelector('data-test=add-to-cart-sauce-labs-backpack');
-    await this.page.click('data-test=add-to-cart-sauce-labs-backpack');
+    await this.page.waitForSelector('data-test=add-to-cart'); 
+    await this.page.click('data-test=add-to-cart');
   }
 
   async clickCart() {
