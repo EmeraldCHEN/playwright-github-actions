@@ -1,17 +1,23 @@
 import { Page } from 'playwright';
+import { Base } from '@pages/base';
 
-export class CheckoutStepOnePage {
-  private page: Page;
-
+export class CheckoutStepOnePage extends Base {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
+  private readonly selectors = {
+    firstnameInput: 'data-test=firstName',
+    lastnameInput: 'data-test=lastName',
+    postalCodeInput: 'data-test=postalCode',
+    continueButton: 'data-test=continue'
+  };
+
   async checkoutStepOne(firstName: string, lastName: string, zip: string) {
-    await this.page.fill('data-test=firstName', firstName);
-    await this.page.fill('data-test=lastName', lastName);
-    await this.page.fill('data-test=postalCode', zip);
-    await this.page.click('data-test=continue');
+    await this.page.fill(this.selectors.firstnameInput, firstName);
+    await this.page.fill(this.selectors.lastnameInput, lastName);
+    await this.page.fill(this.selectors.postalCodeInput, zip);
+    await this.page.click(this.selectors.continueButton);
   }
 }
 

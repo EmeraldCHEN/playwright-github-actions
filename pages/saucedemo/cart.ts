@@ -1,14 +1,17 @@
 import { Page } from 'playwright';
+import { Base } from '@pages/base';
 
-export class CartPage {
-  private page: Page;
-
+export class CartPage  extends Base {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
+  private readonly selectors = {
+    checkoutButton: 'data-test=checkout'
+  };
+
   async checkout() {
-    await this.page.click('data-test=checkout');
+    await this.page.click(this.selectors.checkoutButton);
   }
 }
 

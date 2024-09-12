@@ -1,22 +1,27 @@
 import { Page } from 'playwright';
+import { Base } from '@pages/base';
 
-export class CheckoutCompletePage {
-  private page: Page;
-
+export class CheckoutCompletePage  extends Base {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
+  private readonly selectors = {
+    secondaryHeader: 'data-test=secondary-header',
+    completeHeader: 'data-test=complete-header',
+    backToProducts: 'data-test=back-to-products'
+  };
+
   async getSecondaryHeader() {
-    return this.page.locator('data-test=secondary-header');
+    return this.page.locator(this.selectors.secondaryHeader);
   }
 
   async getSuccessHeader() {
-    return this.page.locator('data-test=complete-header');
+    return this.page.locator(this.selectors.completeHeader);
   }
  
   async backHome() {
-    await this.page.click('data-test=back-to-products');
+    await this.page.click(this.selectors.backToProducts);
   }
 }
 

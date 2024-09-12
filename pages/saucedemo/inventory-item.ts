@@ -1,23 +1,28 @@
 import { Page } from 'playwright';
+import { Base } from '@pages/base';
 
-export class InventoryItemPage {
-  private page: Page;
-
+export class InventoryItemPage extends Base {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
+  private readonly selectors = {
+    inventoryItemName: 'data-test=inventory-item-name',
+    addToCart: 'data-test=add-to-cart',
+    shoppingCartLink: 'data-test=shopping-cart-link'
+  };
+
   async getInventoryItemName() {
-    return await this.page.locator('data-test=inventory-item-name');
+    return this.page.locator(this.selectors.inventoryItemName);
   }
 
   async clickAddToCartButton() {
-    await this.page.waitForSelector('data-test=add-to-cart'); 
-    await this.page.click('data-test=add-to-cart');
+    await this.waitForSelector(this.selectors.addToCart); 
+    await this.click(this.selectors.addToCart);
   }
 
   async clickCart() {
-    await this.page.click('data-test=shopping-cart-link');
+    await this.click(this.selectors.shoppingCartLink);
   }
 }
 

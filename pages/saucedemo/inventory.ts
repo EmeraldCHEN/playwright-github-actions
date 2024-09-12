@@ -1,40 +1,47 @@
 import { Page } from 'playwright';
+import { Base } from '@pages/base';
+import { Product } from '@constants/products';
 
-export class InventoryPage {
-  private page: Page;
-
+export class InventoryPage extends Base {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
+
+  private readonly selectors = {
+    secondaryHeader: 'data-test=secondary-header',
+    addToCartSauceLabsBackpack: 'data-test=add-to-cart-sauce-labs-backpack',
+    shoppingCartBadge: 'data-test=shopping-cart-badge',
+    removeSauceLabsBackpack: 'data-test=remove-sauce-labs-backpack',
+  };
 
   async getPageTitle() {
     return await this.page.title();
   }
 
-  async getInventoryList() {
-    return await this.page.locator('.inventory_list');
+  async getPageSecondaryHeader() {
+    return await this.getTextContent(this.selectors.secondaryHeader); 
   }
 
   async addToCart(itemName: string) {
-    await this.page.click(`text=${itemName}`);
+    await this.click(`text=${itemName}`);
   }
 
   async clickAddToCartButton(itemName: string) {
     await this.page.waitForLoadState('domcontentloaded')
-    if(itemName == 'Sauce Labs Backpack') {
-      await this.page.waitForSelector('data-test=add-to-cart-sauce-labs-backpack');
-      await this.page.click('data-test=add-to-cart-sauce-labs-backpack');
+    if(itemName == Product.sauceLabsBackpack) {
+      await this.waitForSelector(this.selectors.addToCartSauceLabsBackpack);
+      await this.click(this.selectors.addToCartSauceLabsBackpack);
     }
   }
 
   async clickRemoveButton(itemName: string) {
-    if(itemName == 'Sauce Labs Backpack') {
-      await this.page.waitForSelector('data-test=remove-sauce-labs-backpack');
-      await this.page.click('data-test=remove-sauce-labs-backpack');
+    if(itemName == Product.sauceLabsBackpack) {
+      await this.waitForSelector(this.selectors.removeSauceLabsBackpack);
+      await this.click(this.selectors.removeSauceLabsBackpack);
     }   
   }
 
   async getCartCount() {
-    return await this.page.textContent('data-test=shopping-cart-badge');
+    return this.page.locator(this.selectors.shoppingCartBadge); // returns a Locator not a Promise. so 'await' has no effect on the type of this expression
   }
 }

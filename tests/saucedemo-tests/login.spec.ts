@@ -1,26 +1,32 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '@pages/saucedemo/login';
-import { InventoryPage } from '@pages/saucedemo/inventory';
+import { Base } from '@pages/base';
+import { LoginPage, InventoryPage } from '@pages/saucedemo';
+import { Credential, Message } from '@constants/index';
 
 test.describe('Sauce Demo Login Tests', () => {
-  test('should log in with valid credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const inventoryPage = new InventoryPage(page);
+  let base: Base;
+  let loginPage: LoginPage;
+  let inventoryPage: InventoryPage;
 
-    await loginPage.goTo();
-    await loginPage.enterUsername('standard_user');
-    await loginPage.enterPassword('secret_sauce');
+  // Initialize common page objects in the beforeEach hook and make them available to each test
+  test.beforeEach(async ({ page }) => {
+    base = new Base(page);  
+    loginPage = new LoginPage(page);
+    inventoryPage = new InventoryPage(page);
+    await base.goTo('/'); // Navigate to the base URL before each test
+  });
+
+  test('should log in with valid credentials', async ({ page }) => {
+    await loginPage.enterUsername(Credential.standardUsername);
+    await loginPage.enterPassword(Credential.validPassword);
     await loginPage.submit();
     expect(await inventoryPage.getPageTitle()).toBe('Swag Labs');
   });
 
   test('should show error message with invalid credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-
-    await loginPage.goTo();
-    await loginPage.enterUsername('invalid_user');
-    await loginPage.enterPassword('invalid_password');
+    await loginPage.enterUsername(Credential.invalidUsername);
+    await loginPage.enterPassword(Credential.invalidPassword);
     await loginPage.submit();
-    expect(await loginPage.getErrorMessage()).toContain('Username and password do not match any user in this service');
+    expect(await loginPage.getErrorMessage()).toContain(Message.loginErrorMessage);
   });
 });

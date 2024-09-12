@@ -1,18 +1,22 @@
 import { Page } from 'playwright';
+import { Base } from '@pages/base';
 
-export class CheckoutStepTwoPage {
-  private page: Page;
-
+export class CheckoutStepTwoPage extends Base {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
+  private readonly selectors = {
+    inventoryItemName: 'data-test=inventory-item-name',
+    finishButton: 'data-test=finish'
+  };
+
   async getInventoryItemName() {
-    return await this.page.locator('data-test=inventory-item-name');
+    return this.page.locator(this.selectors.inventoryItemName);
   }
  
   async finish() {
-    await this.page.click('data-test=finish');
+    await this.page.click(this.selectors.finishButton);
   }
 }
 
