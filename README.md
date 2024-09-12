@@ -1,5 +1,6 @@
 # playwright-github-action
 - Integrate Playwright tests with GitHub Actions workflows to easily run API and end-to-end tests across multiple browsers and platforms.
+- [Page Object Model (POM)](https://playwright.dev/docs/pom) is used in test automation to reduce code duplication and improve test maintenance.
 - Several useful commands to run locally:
   1) Runs the end-to-end tests: `npx playwright test`
   2) Starts the interactive UI mode: `npx playwright test --ui`
