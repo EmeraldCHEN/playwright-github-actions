@@ -13,9 +13,9 @@ test.describe('Pet Store API and UI Tests', () => {
   test('should fetch order data by ID with value greater than 1 from API', async ({ request }) => {
     const response = await request.get(`${Url.petstoreBaseURL}/v2/store/order/${orderIdGreaterThanOne}`); // Fetch pet with order ID 
     expect(response.status()).toBe(200);orderIdGreaterThanOne
+    
     const orderResponseBody = await response.json();
-    // Define expected properties and their values
-    const expectedProperties = [
+    const expectedProperties = [   // Define expected properties and their values
       { key: 'id', value: orderIdGreaterThanOne },
       { key: 'petId', value: 3 }, 
       { key: 'quantity', value: 2 },
@@ -55,9 +55,12 @@ test.describe('Pet Store API and UI Tests', () => {
     
     // Verify the response status and content
     await expect(await storeGetOrderPage.getResponse()).toContainText('200'); 
-    expect(await storeGetOrderPage.getResponseContent()).toContain(orderIdGreaterThanOne.toString());
-    expect(await storeGetOrderPage.getTextContent('tbody .response-col_description')).toContain(Response.body.keyShipDate);
-    expect(await storeGetOrderPage.getTextContent('tbody .response-col_description')).toContain(Response.body.valuePlaced); 
+
+    const expectedValues = [orderIdGreaterThanOne.toString(), Response.body.keyShipDate, Response.body.valuePlaced];
+    const responseContent = await storeGetOrderPage.getResponseContent();
+    for (const value of expectedValues) {
+      expect(responseContent).toContain(value);
+    }
   });
 })
 

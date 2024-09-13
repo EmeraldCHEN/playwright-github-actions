@@ -31,6 +31,6 @@ export class StoreGetOrderPage  extends Base {
   }
 
   async getResponseContent() {
-    await this.getTextContent(this.selectors.responseBody);
+    return this.getTextContent(this.selectors.responseBody);
   }
 }
