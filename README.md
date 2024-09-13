@@ -1,6 +1,5 @@
 # playwright-github-action
 - Integrate Playwright tests with GitHub Actions workflows to easily run API and end-to-end tests across multiple browsers and platforms.
-- [Page Object Model (POM)](https://playwright.dev/docs/pom) is used in test automation to reduce code duplication and improve test maintenance.
 - Several useful commands to run locally:
   1) Runs the end-to-end tests: `npx playwright test`
   2) Starts the interactive UI mode: `npx playwright test --ui`
@@ -16,4 +15,16 @@
 ```
 npx playwright test tests/saucedemo-tests
 ```
-<img src="https://seleniumbase.github.io/cdn/gif/fast_swag_2.gif" alt="Saucedemo Tests" title="Saucedemo Tests" width="520" />   
+<img src="https://seleniumbase.github.io/cdn/gif/fast_swag_2.gif" alt="Saucedemo Tests" title="Saucedemo Tests" width="520" />  
+
+
+📗 Here's <a href="https://github.com/EmeraldCHEN/playwright-github-action/blob/main/tests/petstore-tests/order.spec.ts" target="_blank">petstore-tests/order.spec.ts</a>, which tests the integration of the API and UI on the page: [Find purchase order by ID](https://petstore.swagger.io/#/store/getOrderById)
+
+```
+npx playwright test tests/petstore-tests/order.spec.ts
+```
+
+<img src='image.png' alt='Test results' title='PetStore Tests' width='520' /> 
+
+
+Happy testing! 🚀
