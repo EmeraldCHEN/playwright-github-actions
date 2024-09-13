@@ -17,12 +17,14 @@ npx playwright test tests/saucedemo-tests
 ```
 <img src="https://seleniumbase.github.io/cdn/gif/fast_swag_2.gif" alt="Saucedemo Tests" title="Saucedemo Tests" width="520" />  
 
+
 📗 Here's <a href="https://github.com/EmeraldCHEN/playwright-github-action/blob/main/tests/petstore-tests/order.spec.ts" target="_blank">petstore-tests/order.spec.ts</a>, which tests the integration of the API and UI on the page: [Find purchase order by ID](https://petstore.swagger.io/#/store/getOrderById)
 
 ```
 npx playwright test tests/petstore-tests/order.spec.ts
 ```
 
-![Test results](image.png)
+<img src='image.png' alt='Test results' title='PetStore Tests' width='520' /> 
+
 
 Happy testing! 🚀
