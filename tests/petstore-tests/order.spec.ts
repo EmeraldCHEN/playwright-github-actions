@@ -15,11 +15,12 @@ test.describe('Pet Store API and UI Tests', () => {
     expect(response.status()).toBe(200);orderIdGreaterThanOne
     
     const orderResponseBody = await response.json();
+    const currentDate = new Date().toISOString(); // Get current date in ISO 8601 format
     const expectedProperties = [   // Define expected properties and their values
       { key: 'id', value: orderIdGreaterThanOne },
       { key: 'petId', value: 3 }, 
       { key: 'quantity', value: 2 },
-      { key: Response.body.keyShipDate, value: '2024-09-13T00:00:35.058+0000'},
+      { key: Response.body.keyShipDate, value: currentDate},
       { key: 'status', value: Response.body.valuePlaced },
       { key: 'complete',  condition: (value: Boolean) => typeof value === 'boolean' }
     ];
